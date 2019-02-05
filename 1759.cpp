@@ -7,7 +7,6 @@ using namespace std;
 string cur_pwd;
 vector<string> possible;
 string alpha; // alphabet list
-bool used[15];
 
 void solve(int l,int c){
     int size = cur_pwd.size();
