@@ -11,14 +11,14 @@ vector<int> get_pi(string p){
     for(int i=1;i<size;i++){
         while(j > 0 && p[i] != p[j]){
             j = pi_vec[j-1];
-        }
+        } // prefix == suffix find
         if(p[i] == p[j]){
             pi_vec[i] = j+1;
             j += 1;
         }
         else{
             pi_vec[i] = 0;
-        }
+        } // no match
     }
     return pi_vec;
 }
@@ -32,7 +32,7 @@ vector<int> kmp(string s,string p){
     for(int i=0;i<s_size;i++){
         while(j > 0 && s[i] != p[j]){
             j = pi_vec[j-1];
-        }
+        } // find sub str
         if(s[i] == p[j]){
             if(j == p_size - 1){
                 ans.push_back(i-p_size+1);
@@ -40,7 +40,7 @@ vector<int> kmp(string s,string p){
             }
             else{
                 j += 1;
-            }
+            } // go to the next
         }
     }
 
