@@ -4,13 +4,7 @@ using namespace std;
 int n_len,m_len,x_start,y_start,order;
 int dice[7];
 int board[20][20];
-const int up_pos[7][5] = {{0,0,0,0,0},
-                          {0,4,3,5,2},
-                          {0,4,3,1,6},
-                          {0,2,5,1,6},
-                          {0,5,2,6,1},
-                          {0,4,3,6,1},
-                          {0,4,3,2,5}};
+
 const int r_way[5] = {0,0,0,-1,1};
 const int c_way[5] = {0,1,-1,0,0};
 
