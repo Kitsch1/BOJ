@@ -22,7 +22,7 @@ int solve(int day,int n){
         return ans += max(solve(day+cur_day_need,n)+cur_benefit,solve(day+1,n));
     }
     else{
-        return ans += solve(day+1,n);
+        return ans += solve(day+1,work);
     }
 }
 
