@@ -7,8 +7,9 @@ using namespace std;
 
 int dp[1500001];
 int n;
+vector<pair<int,int>> work(1500001);
 
-int solve(int day,int n,vector<pair<int,int>> &work){
+int solve(int day,int n){
     if(day > n) return 0;
 
     int& ans = dp[day];
@@ -18,21 +19,20 @@ int solve(int day,int n,vector<pair<int,int>> &work){
     int cur_day_need = work[day].first;
     int cur_benefit = work[day].second;
     if(day + cur_day_need - 1 <= n){
-        return ans += max(solve(day+cur_day_need,n,work)+cur_benefit,solve(day+1,n,work));
+        return ans += max(solve(day+cur_day_need,n)+cur_benefit,solve(day+1,n));
     }
     else{
-        return ans += solve(day+1,n,work);
+        return ans += solve(day+1,n);
     }
 }
 
 int main(){
     scanf("%d",&n);
-    vector<pair<int,int>> work(n+1);
     for(int i=1;i<=n;i++){
         scanf("%d %d",&work[i].first,&work[i].second);
     }
     memset(dp,-1,sizeof(dp));
-    printf("%d\n",solve(1,n,work));
+    printf("%d\n",solve(1,n));
 
     return 0;
 }
