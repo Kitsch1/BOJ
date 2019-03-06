@@ -14,6 +14,7 @@ const int r_way[4] = {0,0,1,-1};
 const int c_way[4] = {1,-1,0,0};
 
 int dfs(int r_cur,int c_cur){
+    // check the number of opened nations
     int v_num = 1;
     visited[r_cur][c_cur] = true;
     changed.push_back({r_cur,c_cur});
@@ -26,7 +27,7 @@ int dfs(int r_cur,int c_cur){
         if(diff < 0) diff = -diff;
         if(!visited[r_next][c_next] && diff >= lower && diff <= higher){
             v_num += dfs(r_next,c_next);
-        }
+        } // if not opened yet and difference of population is in the range
     }
     return v_num;
 }
@@ -41,18 +42,18 @@ int solve(){
                 int v_num = dfs(r,c);
                 if(v_num == 1){
                     visited[r][c] = false;
-                }
+                } // it means no border is opened.
                 else{
                     if(!move_flag){
                         move_flag = true; ans += 1;
-                    }
+                    } // count must increased only one time in one loop
                     int size = changed.size();
-                    int p_avg = popul / size;
+                    int p_avg = popul / size; // calculate the average of the populations of opened nations
                     for(int i=0;i<size;i++){
                         nations[changed[i].first][changed[i].second] = p_avg;
-                    }
+                    } // initialize
                 }
-                changed.clear();
+                changed.clear(); // clear the position of nation vector
                 popul = 0;
             }
         }
